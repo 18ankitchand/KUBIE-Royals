@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% load static %}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Shop Dashboard — Saree &amp; Fashion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'assets/css/admin.css' %}" />
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div class="login-screen" id="login" hidden>
+  <form class="login-card" id="login-form">
+    <span class="login-mark">Private area</span>
+    <h1>Shop Dashboard</h1>
+    <p>Sign in to add and manage your products.</p>
+    <div class="field">
+      <label for="password">Shop password</label>
+      <input type="password" id="password" name="password" autocomplete="current-password" required />
+    </div>
+    <button class="btn btn--primary" type="submit" id="login-btn">Sign in</button>
+    <div id="login-error" class="notice notice--error" hidden></div>
+    <p style="margin:20px 0 0;font-size:0.82rem"><a href="/">← Back to the shop</a></p>
+  </form>
+</div>
+
+<!-- ============ DASHBOARD ============ -->
+<div id="dashboard" hidden>
+  <header class="a-header">
+    <div class="wrap">
+      <h1>Shop Dashboard<small id="brand-label">Saree &amp; Fashion</small></h1>
+      <a class="btn btn--ghost-light btn--sm" href="/" target="_blank" rel="noopener">View shop ↗</a>
+      <button class="btn btn--ghost-light btn--sm" id="logout">Sign out</button>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" data-tab="products" aria-selected="true">Products</button>
+      <button class="tab" role="tab" data-tab="add" aria-selected="false">Add product</button>
+      <button class="tab" role="tab" data-tab="settings" aria-selected="false">Shop settings</button>
+    </div>
+    <div id="password-warning" class="notice" hidden>
+      <strong>Set your own password.</strong> This dashboard is using the fallback password. Add an
+      <code>ADMIN_PASSWORD</code> environment variable in your Netlify project settings, then redeploy.
+    </div>
+  </div>
+
+  <!-- Products -->
+  <section class="panel wrap" data-panel="products">
+    <div class="stats" id="stats"></div>
+    <div class="list-head">
+      <div class="field">
+        <label class="sr-only" for="filter">Search your products</label>
+        <input type="search" id="filter" placeholder="Search your products…" />
+      </div>
+      <button class="btn btn--primary" data-goto-add>+ Add new product</button>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Original</th>
+            <th>Discount</th>
+            <th>Final price</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="rows">
+          <tr><td colspan="8" class="empty">Loading your products…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Add / edit -->
+  <section class="panel wrap" data-panel="add" hidden>
+    <div class="card">
+      <h2 id="form-title">Add a new product</h2>
+      <p class="hint" id="form-hint">Upload a photo from your computer or phone, set the price and discount — the final price is calculated for you.</p>
+
+      <form id="product-form">
+        <input type="hidden" id="product-id" />
+        <input type="hidden" id="image-key" />
+
+        <div class="form-grid">
+          <div class="dropzone">
+            <div class="dropzone__preview" id="preview">No photo yet</div>
+            <div class="dropzone__copy">
+              <strong>Product photo</strong>
+              <p>JPG, PNG, WebP or AVIF — up to 8 MB. Portrait photos look best.</p>
+              <input class="sr-only" type="file" id="image-file" accept="image/*" />
+              <button class="btn btn--outline btn--sm" type="button" id="pick-image">Choose photo</button>
+              <button class="btn btn--sm" type="button" id="remove-image" hidden>Remove photo</button>
+            </div>
+          </div>
+
+          <div class="field field--full">
+            <label for="name">Product name</label>
+            <input type="text" id="name" required maxlength="140" placeholder="e.g. Red Banarasi Saree" />
+          </div>
+
+          <div class="field">
+            <label for="category">Category</label>
+            <select id="category" required></select>
+          </div>
+
+          <div class="field">
+            <label for="fabric">Fabric / material <small>(optional)</small></label>
+            <input type="text" id="fabric" maxlength="120" placeholder="e.g. Pure Banarasi silk" />
+          </div>
+
+          <div class="field">
+            <label for="original-price">Original price</label>
+            <input type="number" id="original-price" min="1" step="0.01" required placeholder="8000" />
+          </div>
+
+          <div class="field">
+            <label for="discount">Discount %</label>
+            <input type="number" id="discount" min="0" max="99" step="1" value="0" placeholder="20" />
+          </div>
+
+          <div class="price-preview">
+            <span class="label">Customer will see</span>
+            <b id="preview-final">—</b>
+            <s id="preview-original"></s>
+            <em id="preview-off"></em>
+          </div>
+
+          <div class="field field--full">
+            <label for="description">Description</label>
+            <textarea id="description" maxlength="4000" placeholder="Fabric, blouse piece, length, care instructions, delivery time…"></textarea>
+          </div>
+
+          <div class="field field--full checks">
+            <span class="check"><input type="checkbox" id="in-stock" checked /> <label for="in-stock" style="text-transform:none;letter-spacing:0;font-size:0.9rem;font-weight:400">In stock</label></span>
+            <span class="check"><input type="checkbox" id="featured" /> <label for="featured" style="text-transform:none;letter-spacing:0;font-size:0.9rem;font-weight:400">Feature on the home page</label></span>
+          </div>
+        </div>
+
+        <div id="form-error" class="notice notice--error" hidden></div>
+
+        <div class="form-actions">
+          <button class="btn btn--primary" type="submit" id="save-btn">Save product</button>
+          <button class="btn btn--outline" type="button" id="reset-btn">Clear form</button>
+          <button class="btn btn--danger" type="button" id="delete-btn" hidden>Delete product</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Settings -->
+  <section class="panel wrap" data-panel="settings" hidden>
+    <div class="card">
+      <h2>Shop settings</h2>
+      <p class="hint">These details power the WhatsApp ordering button, the call button and the social links customers see.</p>
+      <form id="settings-form">
+        <div class="form-grid">
+          <div class="field">
+            <label for="brandName">Shop name</label>
+            <input type="text" id="brandName" />
+          </div>
+          <div class="field">
+            <label for="currency">Currency label</label>
+            <input type="text" id="currency" maxlength="6" />
+          </div>
+          <div class="field field--full">
+            <label for="tagline">Tagline</label>
+            <input type="text" id="tagline" />
+          </div>
+          <div class="field">
+            <label for="whatsapp">WhatsApp number</label>
+            <input type="text" id="whatsapp" placeholder="9779800000000" />
+            <small>Country code first, digits only — used for the order links.</small>
+          </div>
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input type="text" id="phone" placeholder="+977 9800000000" />
+          </div>
+          <div class="field">
+            <label for="facebook">Facebook page URL</label>
+            <input type="url" id="facebook" placeholder="https://facebook.com/yourpage" />
+          </div>
+          <div class="field">
+            <label for="tiktok">TikTok profile URL</label>
+            <input type="url" id="tiktok" placeholder="https://tiktok.com/@yourshop" />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" />
+          </div>
+          <div class="field">
+            <label for="hours">Opening hours</label>
+            <input type="text" id="hours" />
+          </div>
+          <div class="field field--full">
+            <label for="address">Shop address</label>
+            <input type="text" id="address" />
+          </div>
+        </div>
+        <div id="settings-error" class="notice notice--error" hidden></div>
+        <div class="form-actions">
+          <button class="btn btn--primary" type="submit" id="settings-btn">Save settings</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+
+<div class="toast-stack" id="toasts"></div>
+
+<script src="{% static 'assets/js/admin.js' %}" type="module"></script>
+</body>
+</html>
