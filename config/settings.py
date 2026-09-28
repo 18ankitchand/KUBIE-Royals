@@ -26,15 +26,24 @@ TEMPLATES=[{'BACKEND':'django.template.backends.django.DjangoTemplates','DIRS':[
 
 
 WSGI_APPLICATION='config.wsgi.application'
-url=os.environ.get('DATABASE_URL','')
-if url:
- parsed=urlparse(url)
- if parsed.scheme not in ('postgres','postgresql'): raise RuntimeError('DATABASE_URL must be PostgreSQL')
- DATABASES={'default':{'ENGINE':'django.db.backends.postgresql','NAME':unquote(parsed.path.lstrip('/')),'USER':unquote(parsed.username or ''),'PASSWORD':unquote(parsed.password or ''),'HOST':parsed.hostname or 'localhost','PORT':parsed.port or '5432','OPTIONS':{'sslmode':os.environ.get('PGSSLMODE','prefer')}}}
+USE_SQLITE = os.environ.get('USE_SQLITE', 'False').lower() == 'true'
+
+if USE_SQLITE:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 else:
- DATABASES={'default':{'ENGINE':'django.db.backends.postgresql','NAME':os.environ.get('PGDATABASE','aashna'),'USER':os.environ.get('PGUSER','aashna'),'PASSWORD':os.environ.get('PGPASSWORD',''),'HOST':os.environ.get('PGHOST','localhost'),'PORT':os.environ.get('PGPORT','5432')}}
-
-
+    url=os.environ.get('DATABASE_URL','')
+    if url:
+        parsed=urlparse(url)
+        if parsed.scheme not in ('postgres','postgresql'):
+            raise RuntimeError('DATABASE_URL must be PostgreSQL')
+        DATABASES={'default':{'ENGINE':'django.db.backends.postgresql','NAME':unquote(parsed.path.lstrip('/')),'USER':unquote(parsed.username or ''),'PASSWORD':unquote(parsed.password or ''),'HOST':parsed.hostname or 'localhost','PORT':parsed.port or '5432','OPTIONS':{'sslmode':os.environ.get('PGSSLMODE','prefer')}}}
+    else:
+        DATABASES={'default':{'ENGINE':'django.db.backends.postgresql','NAME':os.environ.get('PGDATABASE','aashna'),'USER':os.environ.get('PGUSER','aashna'),'PASSWORD':os.environ.get('PGPASSWORD',''),'HOST':os.environ.get('PGHOST','localhost'),'PORT':os.environ.get('PGPORT','5432')}}
 
 AUTH_PASSWORD_VALIDATORS=[{'NAME':'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},{'NAME':'django.contrib.auth.password_validation.MinimumLengthValidator'},{'NAME':'django.contrib.auth.password_validation.CommonPasswordValidator'},{'NAME':'django.contrib.auth.password_validation.NumericPasswordValidator'}]
 LANGUAGE_CODE='en-us';

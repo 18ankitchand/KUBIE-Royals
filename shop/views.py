@@ -284,6 +284,7 @@ def esewa_payment(request, pk):
     transaction_uuid = str(uuid.uuid4())
     order.transaction_uuid = transaction_uuid
     order.save()
+    total = str(order.total)  
 
     product_code = os.getenv("ESEWA_PRODUCT_CODE")
     secret_key = os.getenv("ESEWA_SECRET_KEY")
@@ -408,9 +409,8 @@ def esewa_success(request, pk):
             return HttpResponse("Invalid payment signature.")
 
         # Verify directly with eSewa
-        verify_url = "https://rc.esewa.com.np/api/epay/transaction/status/"
-
-        response = requests.get(
+            verify_url = "https://rc.esewa.com.np/api/epay/transaction/status/"
+            response = requests.get(
             verify_url,
             params={
                 "product_code": os.getenv("ESEWA_PRODUCT_CODE"),
