@@ -22,3 +22,9 @@ staticfiles/
 
 # Logs
 *.log
+# Production deployment files
+db.sqlite3
+db.sqlite3.backup
+config/settings.py.backup
+shop_data.json
+media/
