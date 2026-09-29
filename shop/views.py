@@ -409,8 +409,10 @@ def esewa_success(request, pk):
             return HttpResponse("Invalid payment signature.")
 
         # Verify directly with eSewa
-            verify_url = "https://rc.esewa.com.np/api/epay/transaction/status/"
-            response = requests.get(
+
+        verify_url = "https://rc.esewa.com.np/api/epay/transaction/status/"
+
+        response = requests.get(
             verify_url,
             params={
                 "product_code": os.getenv("ESEWA_PRODUCT_CODE"),
@@ -420,16 +422,11 @@ def esewa_success(request, pk):
             timeout=10
         )
 
+        response.raise_for_status()
         verification = response.json()
-
         print("ESEWA VERIFICATION:", verification)
 
-        if verification.get("status") != "COMPLETE":
-            return HttpResponse(
-                f"Payment verification failed: "
-                f"{verification.get('status', 'UNKNOWN')}"
-            )
-
+ 
         # Payment is verified
         order.payment_status = "PAID"
         order.status = "Confirmed"
