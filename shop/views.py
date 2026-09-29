@@ -359,7 +359,11 @@ def verify_esewa(request, pk):
 
     if not order:
         return Response({"error": "Order not found."}, status=404)
-
+    if request.session.get("checkout_order_id") != order.id:
+        return Response(
+            {"error": "You are not authorized to verify this order."},
+            status=403
+        )
     url = "https://rc.esewa.com.np/api/epay/transaction/status/"
 
     params = {
