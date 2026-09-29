@@ -253,12 +253,25 @@ def create_order(request):
         for p in products
     )
 
-    order = Order(
-        name=name,
-        phone=phone,
-        address=address,
-        total=total
-    )
+    order_id = request.session.get("checkout_order_id")
+    order = Order.objects.filter(
+        id=order_id,
+        payment_status="UNPAID"
+    ).first()
+
+    if order:
+        order.name = name
+        order.phone = phone
+        order.address = address
+        order.total = total
+        order.items.all().delete()
+    else:
+        order = Order(
+            name=name,
+            phone=phone,
+            address=address,
+            total=total
+        )
 
     try:
         order.full_clean()
@@ -281,6 +294,8 @@ def create_order(request):
             {"error": " ".join(e.messages)},
             status=400
         )
+    request.session["checkout_order_id"] = order.id
+    request.session.modified = True
 
     return Response({
         "message": "Order created.",
@@ -298,7 +313,11 @@ def esewa_payment(request, pk):
 
     if not order:
         return Response({"error": "Order not found."}, status=404)
-
+    if request.session.get("checkout_order_id") != order.id:
+        return Response(
+            {"error": "You are not authorized to pay this order."},
+            status=403
+        )
     transaction_uuid = str(uuid.uuid4())
     order.transaction_uuid = transaction_uuid
     order.save()
