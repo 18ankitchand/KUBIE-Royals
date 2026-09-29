@@ -321,8 +321,8 @@ def esewa_payment(request, pk):
         )
     transaction_uuid = str(uuid.uuid4())
     order.transaction_uuid = transaction_uuid
-    order.save()
-    total = str(order.total)  
+    order.save(update_fields=["transaction_uuid"])
+    total = str(order.total)
 
     product_code = os.getenv("ESEWA_PRODUCT_CODE")
     secret_key = os.getenv("ESEWA_SECRET_KEY")
