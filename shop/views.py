@@ -1,4 +1,5 @@
 #esewa intigration
+from decimal import Decimal, InvalidOperation
 import os
 import uuid
 import hmac
@@ -424,10 +425,15 @@ def esewa_success(request, pk):
         if payment_data.get("transaction_uuid") != order.transaction_uuid:
             return HttpResponse("Transaction does not match this order.")
 
+    
         # Check amount
-        if float(payment_data.get("total_amount", 0)) != float(order.total):
-            return HttpResponse("Payment amount does not match.")
+        try:
+            paid_amount = Decimal(str(payment_data.get("total_amount")))
+        except (InvalidOperation, TypeError):
+            return HttpResponse("Invalid payment amount.")
 
+        if paid_amount != order.total:
+            return HttpResponse("Payment amount does not match.")
         # Verify returned signature
         secret_key = os.getenv("ESEWA_SECRET_KEY")
 
