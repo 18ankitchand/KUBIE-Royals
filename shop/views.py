@@ -25,7 +25,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Product,ShopSetting,Category,Order
+from .models import Product, ShopSetting, Category, Order, OrderItem
 from .serializers import ProductSerializer
 DEFAULT_SETTINGS={'brandName':'KUBIE Royals','tagline':'Handpicked sarees, kurtis and festive wear — delivered across Nepal.','whatsapp':'9779708059550','phone':'+977 9779708059550','facebook':'https://facebook.com/kusum.chand.803639','tiktok':'https://tiktok.com/@kubie.couture?r=1&_t=ZS-99mDTA3yeF2','email':'hello@example.com','address':'Kanchanpur, Mahendranagar, Nepal','hours':'Sun–Fri, 10:00 – 19:00','currency':'NPR'}
 def storefront(request):return render(request,'index.html')
@@ -258,6 +258,19 @@ def create_order(request):
     try:
         order.full_clean()
         order.save()
+
+        for product in products:
+            quantity = cart.cart[str(product.id)]
+            price = product.original_price * (100 - product.discount_percent) / 100
+
+            OrderItem.objects.create(
+                order=order,
+                product=product,
+                product_name=product.name,
+                price=price,
+                quantity=quantity
+            )
+
     except ValidationError as e:
         return Response(
             {"error": " ".join(e.messages)},
