@@ -387,6 +387,7 @@ def verify_esewa(request, pk):
         order.save()
 
         Cart(request).clear()
+        request.session.pop("checkout_order_id", None)
 
         return Response({
             "verified": True,
@@ -483,6 +484,7 @@ def esewa_success(request, pk):
         order.save()
 
         Cart(request).clear()
+        request.session.pop("checkout_order_id", None)
 
         return HttpResponse(
             f"""
