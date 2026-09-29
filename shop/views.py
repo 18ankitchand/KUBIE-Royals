@@ -242,6 +242,11 @@ def create_order(request):
         in_stock=True
     )
 
+    if products.count() != len(cart.cart):
+       return Response(
+            {"error": "Some cart items are unavailable. Please update your cart."},
+            status=400
+        )
     total = sum(
         p.original_price * (100 - p.discount_percent) / 100
         * cart.cart[str(p.id)]
