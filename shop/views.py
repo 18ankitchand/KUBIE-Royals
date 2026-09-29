@@ -409,6 +409,9 @@ def esewa_success(request, pk):
     if not order:
         return HttpResponse("Order not found.")
 
+    if order.payment_status == "PAID":
+        return HttpResponse("Payment already verified.")
+
     if not encoded_data:
         return HttpResponse("Payment data not received.")
 
