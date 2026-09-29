@@ -5,9 +5,9 @@
 import { api, escapeHtml, imageUrl, money, telLink, whatsappOrderLink } from "./shared.js";
 
 const CATEGORY_ROUTES = {
-  sarees: "Sarees",
+  sarees: "Sari",
   dresses: "Dresses",
-  kurtis: "Kurtis",
+  kurtis: "Kurti",
   lehenga: "Lehenga",
   suits: "Suits",
   accessories: "Accessories",
@@ -429,7 +429,7 @@ function route() {
 
   if (state.offersOnly) {
     state.sort = "discount";
-    $("#sort").value = "discount";
+    if ($("#sort")) $("#sort").value = "discount";
   }
 
   markNav(state.offersOnly ? "#/offers" : `#/${first}`);
@@ -442,32 +442,41 @@ function route() {
 function wireEvents() {
   const burger = $("#burger");
   const nav = $("#nav");
+  if (burger) {
   burger.addEventListener("click", () => {
     const open = nav.classList.toggle("is-open");
     burger.setAttribute("aria-expanded", String(open));
   });
-  nav.addEventListener("click", (event) => {
-    if (event.target.closest("a")) {
-      nav.classList.remove("is-open");
+}
+
+nav.addEventListener("click", (event) => {
+  if (event.target.closest("a")) {
+    nav.classList.remove("is-open");
+
+    if (burger) {
       burger.setAttribute("aria-expanded", "false");
     }
-  });
+  }
+});
 
-  $("#search").addEventListener("input", (event) => {
-    state.search = event.target.value;
-    renderShop();
-  });
-  $("#sort").addEventListener("change", (event) => {
-    state.sort = event.target.value;
-    renderShop();
-  });
-  $("#chips").addEventListener("click", (event) => {
-    const chip = event.target.closest("[data-category]");
-    if (!chip) return;
-    state.category = chip.dataset.category;
-    renderChips();
-    renderShop();
-  });
+  $("#search")?.addEventListener("input", (event) => {
+  state.search = event.target.value;
+  renderShop();
+});
+
+$("#sort")?.addEventListener("change", (event) => {
+  state.sort = event.target.value;
+  renderShop();
+});
+
+$("#chips")?.addEventListener("click", (event) => {
+  const chip = event.target.closest("[data-category]");
+  if (!chip) return;
+
+  state.category = chip.dataset.category;
+  renderChips();
+  renderShop();
+});
 
   document.addEventListener("click", (event) => {
     const opener = event.target.closest("[data-open]");
@@ -647,3 +656,109 @@ $("#year").textContent = new Date().getFullYear();
 wireEvents();
 route();
 load();
+// Product filter dropdown
+const productBtn = document.getElementById("product-filter-btn");
+const productMenu = document.getElementById("product-filter-menu");
+
+if (productBtn && productMenu) {
+  productBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+    productMenu.hidden = !productMenu.hidden;
+  });
+
+  productMenu.addEventListener("click", () => {
+    productMenu.hidden = true;
+  });
+
+  document.addEventListener("click", () => {
+    productMenu.hidden = true;
+  });
+}
+
+
+// Header product search
+const searchButton = document.getElementById("search-button");
+const headerSearch = document.getElementById("header-search-input");
+const header = document.querySelector(".header");
+
+if (searchButton && headerSearch && header) {
+  searchButton.addEventListener("click", () => {
+    header.classList.add("search-mode");
+    headerSearch.hidden = false;
+    headerSearch.focus();
+  });
+
+  headerSearch.addEventListener("input", (event) => {
+    state.search = event.target.value;
+
+    if (location.hash !== "#/all") {
+      location.hash = "#/all";
+    } else {
+      renderShop();
+    }
+  });
+
+  headerSearch.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      header.classList.remove("search-mode");
+      headerSearch.hidden = true;
+      headerSearch.value = "";
+      state.search = "";
+      renderShop();
+    }
+  });
+}
+
+
+// Close search when empty and clicking outside
+document.addEventListener("click", (event) => {
+  if (!header || !headerSearch) return;
+
+  const clickedSearch = event.target.closest(".header-search");
+
+  if (
+    header.classList.contains("search-mode") &&
+    !clickedSearch &&
+    headerSearch.value.trim() === ""
+  ) {
+    header.classList.remove("search-mode");
+    headerSearch.hidden = true;
+  }
+});
+
+
+// Price filter dropdown
+const priceBtn = document.getElementById("price-filter-btn");
+const priceMenu = document.getElementById("price-filter-menu");
+
+if (priceBtn && priceMenu) {
+  priceBtn.addEventListener("click", (event) => {
+    event.stopPropagation();
+
+    // Close product dropdown
+    if (productMenu) productMenu.hidden = true;
+
+    priceMenu.hidden = !priceMenu.hidden;
+  });
+
+  priceMenu.addEventListener("click", (event) => {
+    const option = event.target.closest("[data-sort]");
+    if (!option) return;
+
+    state.sort = option.dataset.sort;
+    priceMenu.hidden = true;
+
+    if (location.hash !== "#/all") {
+      location.hash = "#/all";
+    } else {
+      renderShop();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest("#price-filter-menu") &&
+        !event.target.closest("#price-filter-btn")) {
+      priceMenu.hidden = true;
+    }
+  });
+}
