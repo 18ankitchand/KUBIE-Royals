@@ -375,11 +375,13 @@ def verify_esewa(request, pk):
 
     try:
         response = requests.get(url, params=params, timeout=10)
+        response.raise_for_status()
         data = response.json()
-
-        print("ESEWA VERIFY:", data)
-    except requests.RequestException:
-        return Response({"error": "Could not verify payment."}, status=502)
+    except (requests.RequestException, ValueError):
+        return Response(
+            {"error": "Could not verify payment."},
+            status=502
+        )
 
     if data.get("status") == "COMPLETE":
         order.payment_status = "PAID"
@@ -403,8 +405,6 @@ def verify_esewa(request, pk):
 def esewa_success(request, pk):
     encoded_data = request.GET.get("data")
 
-    print("ESEWA CALLBACK URL:", request.get_full_path())
-    print("ESEWA GET DATA:", request.GET)
 
     order = Order.objects.filter(pk=pk).first()
 
@@ -475,7 +475,6 @@ def esewa_success(request, pk):
 
         response.raise_for_status()
         verification = response.json()
-        print("ESEWA VERIFICATION:", verification)
 
  
         # Payment is verified
@@ -496,5 +495,4 @@ def esewa_success(request, pk):
         )
 
     except Exception as error:
-        print("ESEWA ERROR:", error)
         return HttpResponse("Payment verification error.")
