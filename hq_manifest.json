@@ -1,0 +1,338 @@
+[
+  {
+    "name": "Classic Red Banarasi Saree",
+    "category": "Sarees",
+    "file": "hq_images/sarees/classic_red_banarasi_saree.jpg",
+    "source": "red_banarasi_silk_saree_with_gold_zari_motifs.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Emerald Green Silk Saree",
+    "category": "Sarees",
+    "file": "hq_images/sarees/emerald_green_silk_saree.jpg",
+    "source": "emerald_green_silk_saree_with_gold_zari_motifs.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Royal Blue Georgette Saree",
+    "category": "Sarees",
+    "file": "hq_images/sarees/royal_blue_georgette_saree.jpg",
+    "source": "royal_blue_zari_embroidered_saree_draped_elegantly.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Ivory Cotton Daily Saree",
+    "category": "Sarees",
+    "file": "hq_images/sarees/ivory_cotton_daily_saree.jpg",
+    "source": "ivory_cotton_saree_with_woven_border.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Wine Embroidered Party Saree",
+    "category": "Sarees",
+    "file": "hq_images/sarees/wine_embroidered_party_saree.jpg",
+    "source": "luxurious_maroon_floral_embroidered_saree.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Mustard Yellow Linen Saree",
+    "category": "Sarees",
+    "file": "hq_images/sarees/mustard_yellow_linen_saree.jpg",
+    "source": "a_high_resolution_studio_product_photo_of_a_saree.png",
+    "match_review_required": true
+  },
+  {
+    "name": "Rose Pink Chiffon Saree",
+    "category": "Sarees",
+    "file": "hq_images/sarees/rose_pink_chiffon_saree.jpg",
+    "source": "a_clean_studio_product_photo_on_a_plain_cream_beig.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Black Golden Border Saree",
+    "category": "Sarees",
+    "file": "hq_images/sarees/black_golden_border_saree.jpg",
+    "source": "a_clean_studio_product_photography_scene_on_a_sof.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Lavender Organza Saree",
+    "category": "Sarees",
+    "file": "hq_images/sarees/lavender_organza_saree.jpg",
+    "source": "lavender_organza_saree_with_floral_embroidery.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Teal Printed Cotton Saree",
+    "category": "Sarees",
+    "file": "hq_images/sarees/teal_printed_cotton_saree.jpg",
+    "source": "teal_floral_block_print_cotton_saree.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Maroon Festive Silk Saree",
+    "category": "Sarees",
+    "file": "hq_images/sarees/maroon_festive_silk_saree.jpg",
+    "source": "a_studio_product_style_photograph_a_luxurious_dee.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Peach Floral Saree",
+    "category": "Sarees",
+    "file": "hq_images/sarees/peach_floral_saree.jpg",
+    "source": "peach_floral_embroidered_saree_display.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Midnight Blue Maxi Dress",
+    "category": "Dresses",
+    "file": "hq_images/dresses/midnight_blue_maxi_dress.jpg",
+    "source": "a_clean_studio_product_fashion_photograph_a_singl.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Floral Summer Midi Dress",
+    "category": "Dresses",
+    "file": "hq_images/dresses/floral_summer_midi_dress.jpg",
+    "source": "floral_tiered_chiffon_midi_dress.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Classic Black Evening Dress",
+    "category": "Dresses",
+    "file": "hq_images/dresses/classic_black_evening_dress.jpg",
+    "source": "elegant_black_draped_evening_gown.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Rose Pink Wrap Dress",
+    "category": "Dresses",
+    "file": "hq_images/dresses/rose_pink_wrap_dress.jpg",
+    "source": "a_clean_studio_product_photo_on_a_pale_off_white_b.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Emerald Party Gown",
+    "category": "Dresses",
+    "file": "hq_images/dresses/emerald_party_gown.jpg",
+    "source": "a_clean_studio_product_photo_a_single_garment_no.png",
+    "match_review_required": true
+  },
+  {
+    "name": "Ivory A-Line Dress",
+    "category": "Dresses",
+    "file": "hq_images/dresses/ivory_a_line_dress.jpg",
+    "source": "a_clean_studio_product_photo_on_a_light_neutral_be.png",
+    "match_review_required": true
+  },
+  {
+    "name": "Wine Pleated Midi Dress",
+    "category": "Dresses",
+    "file": "hq_images/dresses/wine_pleated_midi_dress.jpg",
+    "source": "a_clean_studio_product_photo_on_a_warm_cream_backg.png",
+    "match_review_required": true
+  },
+  {
+    "name": "Sky Blue Casual Dress",
+    "category": "Dresses",
+    "file": "hq_images/dresses/sky_blue_casual_dress.jpg",
+    "source": "a_clean_studio_product_photo_on_a_warm_cream_beige.png",
+    "match_review_required": true
+  },
+  {
+    "name": "Lavender Occasion Dress",
+    "category": "Dresses",
+    "file": "hq_images/dresses/lavender_occasion_dress.jpg",
+    "source": "a_clean_studio_style_product_fashion_photograph_o.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Mustard Shirt Dress",
+    "category": "Dresses",
+    "file": "hq_images/dresses/mustard_shirt_dress.jpg",
+    "source": "a_clean_studio_style_product_photo_on_a_plain_war.png",
+    "match_review_required": true
+  },
+  {
+    "name": "Navy Printed Maxi Dress",
+    "category": "Dresses",
+    "file": "hq_images/dresses/navy_printed_maxi_dress.jpg",
+    "source": "a_clean_studio_product_photo_scene_a_single_elega.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Champagne Festive Gown",
+    "category": "Dresses",
+    "file": "hq_images/dresses/champagne_festive_gown.jpg",
+    "source": "a_clean_studio_product_photo_on_a_light_cream_whit.png",
+    "match_review_required": true
+  },
+  {
+    "name": "White Chikankari Kurti",
+    "category": "Kurtis",
+    "file": "hq_images/kurtis/white_chikankari_kurti.jpg",
+    "source": "white_chikankari_kurti_on_cream_background.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Teal Straight-Cut Kurti",
+    "category": "Kurtis",
+    "file": "hq_images/kurtis/teal_straight_cut_kurti.jpg",
+    "source": "teal_kurti_with_gold_floral_embroidery.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Mustard Printed Kurti",
+    "category": "Kurtis",
+    "file": "hq_images/kurtis/mustard_printed_kurti.jpg",
+    "source": "mustard_floral_printed_kurti.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Rose Embroidered Kurti",
+    "category": "Kurtis",
+    "file": "hq_images/kurtis/rose_embroidered_kurti.jpg",
+    "source": "rose_pink_embroidered_kurti.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Navy Anarkali Kurti",
+    "category": "Kurtis",
+    "file": "hq_images/kurtis/navy_anarkali_kurti.jpg",
+    "source": "embroidered_navy_anarkali_gown.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Mint Green Daily Kurti",
+    "category": "Kurtis",
+    "file": "hq_images/kurtis/mint_green_daily_kurti.jpg",
+    "source": "mint_green_embroidered_kurti.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Maroon Festive Kurti",
+    "category": "Kurtis",
+    "file": "hq_images/kurtis/maroon_festive_kurti.jpg",
+    "source": "a_clean_studio_product_photo_on_a_light_beige_ivor.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Black A-Line Kurti",
+    "category": "Kurtis",
+    "file": "hq_images/kurtis/black_a_line_kurti.jpg",
+    "source": "a_clean_studio_product_photo_on_a_light_beige_neut.png",
+    "match_review_required": true
+  },
+  {
+    "name": "Peach Floral Kurti",
+    "category": "Kurtis",
+    "file": "hq_images/kurtis/peach_floral_kurti.jpg",
+    "source": "a_clean_studio_product_photo_of_a_women_s_ethnic_k.png",
+    "match_review_required": true
+  },
+  {
+    "name": "Lavender Panelled Kurti",
+    "category": "Kurtis",
+    "file": "hq_images/kurtis/lavender_panelled_kurti.jpg",
+    "source": "a_clean_product_style_studio_photo_a_single_laven.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Olive Green Kurti",
+    "category": "Kurtis",
+    "file": "hq_images/kurtis/olive_green_kurti.jpg",
+    "source": "olive_green_embroidered_kurti.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Ivory Gold Detail Kurti",
+    "category": "Kurtis",
+    "file": "hq_images/kurtis/ivory_gold_detail_kurti.jpg",
+    "source": "ivory_kurti_with_ornate_gold_embroidery.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Royal Red Bridal Lehenga",
+    "category": "Lehenga",
+    "file": "hq_images/lehenga/royal_red_bridal_lehenga.jpg",
+    "source": "a_crisp_high_resolution_studio_product_photograph.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Emerald Festive Lehenga",
+    "category": "Lehenga",
+    "file": "hq_images/lehenga/emerald_festive_lehenga.jpg",
+    "source": "a_crisp_studio_product_photo_of_an_indian_bridal_p.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Blush Pink Embroidered Lehenga",
+    "category": "Lehenga",
+    "file": "hq_images/lehenga/blush_pink_embroidered_lehenga.jpg",
+    "source": "a_clean_studio_product_photo_of_an_ornate_indian_b.png",
+    "match_review_required": true
+  },
+  {
+    "name": "Midnight Blue Party Lehenga",
+    "category": "Lehenga",
+    "file": "hq_images/lehenga/midnight_blue_party_lehenga.jpg",
+    "source": "a_clean_studio_product_photo_a_single_elegant_tra.png",
+    "match_review_required": true
+  },
+  {
+    "name": "Ivory Gold Occasion Lehenga",
+    "category": "Lehenga",
+    "file": "hq_images/lehenga/ivory_gold_occasion_lehenga.jpg",
+    "source": "a_clean_studio_product_photo_a_luxurious_deep_mar.png",
+    "match_review_required": true
+  },
+  {
+    "name": "Wine Velvet Lehenga",
+    "category": "Lehenga",
+    "file": "hq_images/lehenga/wine_velvet_lehenga.jpg",
+    "source": "a_high_resolution_studio_product_photo_of_an_elega.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Peach Floral Lehenga",
+    "category": "Lehenga",
+    "file": "hq_images/lehenga/peach_floral_lehenga.jpg",
+    "source": "peach_floral_embroidered_lehenga_set.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Teal Mirrorwork Lehenga",
+    "category": "Lehenga",
+    "file": "hq_images/lehenga/teal_mirrorwork_lehenga.jpg",
+    "source": "teal_mirrorwork_lehenga_set.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Lavender Festive Lehenga",
+    "category": "Lehenga",
+    "file": "hq_images/lehenga/lavender_festive_lehenga.jpg",
+    "source": "a_high_resolution_studio_product_style_photo_of_a.png",
+    "match_review_required": false
+  },
+  {
+    "name": "Mustard Mehendi Lehenga",
+    "category": "Lehenga",
+    "file": "hq_images/lehenga/mustard_mehendi_lehenga.jpg",
+    "source": "a_clean_studio_style_product_photo_of_an_ornate_in.png",
+    "match_review_required": true
+  },
+  {
+    "name": "Champagne Reception Lehenga",
+    "category": "Lehenga",
+    "file": "hq_images/lehenga/champagne_reception_lehenga.jpg",
+    "source": "a_clean_studio_product_photo_on_a_neutral_beige_cr.png",
+    "match_review_required": true
+  },
+  {
+    "name": "Maroon Zari Lehenga",
+    "category": "Lehenga",
+    "file": "hq_images/lehenga/maroon_zari_lehenga.jpg",
+    "source": "a_crisp_high_resolution_studio_product_photo_of_a.png",
+    "match_review_required": false
+  }
+]
