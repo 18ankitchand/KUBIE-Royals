@@ -28,3 +28,9 @@ db.sqlite3.backup
 config/settings.py.backup
 shop_data.json
 media/
+
+# Generated deployment archives and backup references
+KUBIE_Royals_HQ_48_replacement.zip
+kubie_48_product_only_demo_images.zip
+kubie_image_backup_*.json
+products-backup-before-delete.json
