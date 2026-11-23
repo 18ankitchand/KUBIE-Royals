@@ -113,11 +113,19 @@ function skeletons(count = 8) {
 
 /* --------------------------------------------------------------- filtering */
 
+function normalizedCategory(value) {
+  const name = String(value || "").trim().toLowerCase();
+  if (["sari", "saree", "sarees", "saris"].includes(name)) return "sarees";
+  if (["kurti", "kurtis", "kurta", "kurtas"].includes(name)) return "kurtis";
+  return name;
+}
+
+
 function visibleProducts() {
   const term = state.search.trim().toLowerCase();
   let list = state.products.filter((product) => {
     if (state.offersOnly && product.discountPercent <= 0) return false;
-    if (state.category !== "All" && product.category !== state.category) return false;
+    if (state.category !== "All" && normalizedCategory(product.category) !== normalizedCategory(state.category)) return false;
     if (!term) return true;
     return (
       product.name.toLowerCase().includes(term) ||
