@@ -5,9 +5,9 @@
 import { api, escapeHtml, imageUrl, money, telLink, whatsappOrderLink } from "./shared.js";
 
 const CATEGORY_ROUTES = {
-  sarees: "Sari",
+  sarees: "Sarees",
   dresses: "Dresses",
-  kurtis: "Kurti",
+  kurtis: "Kurtis",
   lehenga: "Lehenga",
   suits: "Suits",
   accessories: "Accessories",
