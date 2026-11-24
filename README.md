@@ -1,6 +1,30 @@
-# Aashna Saree & Fashion — Django + DRF migration
+# KUBIE-Royals | Fashion E-Commerce Platform
 
-This is a newly generated migration project based on the user-provided Netlify source ZIP. The original storefront HTML/CSS/JS, dashboard and six static images are included. Netlify Functions are replaced with Django REST Framework endpoints, PostgreSQL models and Django session authentication. Source data and live Netlify Blobs are **not** in the ZIP and must be exported separately; see `MIGRATION.md`.
+KUBIE-Royals is a modern fashion e-commerce
+platform built with Django, Django REST Framework,
+PostgreSQL, HTML, CSS and JavaScript.
+
+## Live Website
+
+[Visit KUBIE-Royals](https://anki.pythonanywhere.com)
+
+## Key Features
+
+- Product catalog and category filtering
+- Shopping cart and order management
+- eSewa payment integration
+- Inventory and stock management
+- Discounts and promotional offers
+- Admin dashboard
+- Responsive web design
+
+## Technology Stack
+
+- Backend: Python, Django, Django REST Framework
+- Frontend: HTML, CSS, JavaScript
+- Database: PostgreSQL
+- Payment: eSewa
+- Hosting: PythonAnywhere
 
 ## Local setup (PostgreSQL required)
 
